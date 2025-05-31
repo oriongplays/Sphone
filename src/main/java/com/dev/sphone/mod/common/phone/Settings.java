@@ -1,17 +1,15 @@
 package com.dev.sphone.mod.common.phone;
 
 import com.dev.sphone.mod.client.gui.phone.AppManager;
-import fr.aym.acslib.utils.nbtserializer.ISerializable;
-import fr.aym.acslib.utils.packetserializer.ISerializablePacket;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Settings implements ISerializable, ISerializablePacket {
+public class Settings {
 
-    String background;
-    boolean silence;
-    List<AppManager.App> downlaodedApps = new ArrayList<>();
+    private String background;
+    private boolean silence;
+    private List<AppManager.App> downlaodedApps = new ArrayList<>();
 
     public Settings() {}
 
@@ -37,22 +35,11 @@ public class Settings implements ISerializable, ISerializablePacket {
         this.silence = silence;
     }
 
-    @Override
-    public int getVersion() {
-        return 0;
+    public List<AppManager.App> getDownloadedApps() {
+        return downlaodedApps;
     }
 
-    @Override
-    public Object[] getObjectsToSave() {
-        return new Object[]{background, silence, downlaodedApps};
+    public void setDownloadedApps(List<AppManager.App> downlaodedApps) {
+        this.downlaodedApps = downlaodedApps;
     }
-
-    @Override
-    public void populateWithSavedObjects(Object[] objects) {
-        background = (String) objects[0];
-        silence = (Boolean) objects[1];
-        downlaodedApps = (List<AppManager.App>) objects[2];
-    }
-
-
 }

@@ -3,9 +3,7 @@ package com.dev.sphone.mod.client.gui.phone.apps.plusplusgame;
 import com.dev.sphone.api.loaders.AppDetails;
 import com.dev.sphone.api.loaders.AppType;
 import com.dev.sphone.mod.client.gui.phone.GuiBase;
-import fr.aym.acsguis.component.layout.GridLayout;
 import fr.aym.acsguis.component.panel.GuiPanel;
-import fr.aym.acsguis.component.panel.GuiScrollPane;
 import fr.aym.acsguis.component.textarea.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -22,7 +20,6 @@ public class GuiPlusPlusGame extends GuiBase {
     }
 
     int points = 0;
-
     GuiLabel counter;
 
     @Override
@@ -31,67 +28,54 @@ public class GuiPlusPlusGame extends GuiBase {
 
         counter = new GuiLabel(I18n.format("sphone.plusplusgame.points") + " 0");
         counter.setCssId("counter");
-//        GuiLabel appTitle = new GuiLabel("Plus Plus Game");
-//        appTitle.setCssId("app_title");
-//        this.getRoot().add(appTitle);
 
         GuiPanel gamePanel = new GuiPanel();
         gamePanel.setCssClass("game_panel");
-
         getRoot().add(gamePanel);
 
-        Thread th = new Thread(() -> {
-            try {
-                Thread.sleep(100);
+        // Adiciona o primeiro botão após o primeiro tick da GUI (para garantir layout pronto)
+        gamePanel.addTickListener(() -> {
+            if (gamePanel.getChildComponents().isEmpty()) {
                 drawRandomButton(gamePanel);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         });
 
-        th.start();
-
         getRoot().add(counter);
-
         add(this.getRoot());
-
-
     }
 
     public void drawRandomButton(GuiPanel backframe) {
         GuiPanel button = new GuiPanel();
-        int wmax = backframe.getWidth() - 50;
-        int hmax = backframe.getHeight() - 50;
-
-
-        System.out.println("Max size " + wmax + " " + hmax);
-        int x = Math.max(50, (int) (Math.random() * wmax));
-        int y = Math.max(50, (int) (Math.random() * hmax));
-
         button.setCssClass("button");
-        button.getStyle().setOffsetX(x);
-        button.getStyle().setOffsetY(y);
 
-        System.out.println("Button at " + x + " " + y);
+        int wmax = Math.max(1, (int)(backframe.getWidth() - 50));
+        int hmax = Math.max(1, (int)(backframe.getHeight() - 50));
+        int x = (int) (Math.random() * wmax);
+        int y = (int) (Math.random() * hmax);
+
+        getStyle().setOffsetX(x);
+        getStyle().setOffsetY(y);
 
         button.addClickListener((mouseX, mouseY, mouseButton) -> {
             points++;
             backframe.remove(button);
-            backframe.getStyle().setBackgroundColor(0xFF000000 + (int) (Math.random() * 0xFFFFFF));
-            counter.setText(I18n.format("sphone.plusplusgame.points") + " " +  points);
+            // Troca de background color pelo Customizer:
+            String color = String.format("#%06X", (int)(Math.random() * 0xFFFFFF));
+            backframe.getStyle().getCustomizer().setBackgroundColor(
+                Integer.parseUnsignedInt(color.substring(1), 16) | 0xFF000000
+            );
+            counter.setText(I18n.format("sphone.plusplusgame.points") + " " + points);
             drawRandomButton(backframe);
         });
 
         backframe.add(button);
-
-
     }
 
+    @Override
     public List<ResourceLocation> getCssStyles() {
         List<ResourceLocation> styles = new ArrayList<>();
         styles.add(super.getCssStyles().get(0));
         styles.add(new ResourceLocation("sphone:css/plusplusgame.css"));
         return styles;
     }
-
 }

@@ -1,9 +1,6 @@
 package com.dev.sphone.mod.common.phone;
 
-import fr.aym.acslib.utils.nbtserializer.ISerializable;
-import fr.aym.acslib.utils.packetserializer.ISerializablePacket;
-
-public class Weather implements ISerializable, ISerializablePacket {
+public class Weather {
     private int clearTime;
     private int rainTime;
     private int thunderTime;
@@ -24,38 +21,39 @@ public class Weather implements ISerializable, ISerializablePacket {
         return clearTime;
     }
 
+    public void setClearTime(int clearTime) {
+        this.clearTime = clearTime;
+    }
+
     public int getRainTime() {
         return rainTime;
+    }
+
+    public void setRainTime(int rainTime) {
+        this.rainTime = rainTime;
     }
 
     public int getThunderTime() {
         return thunderTime;
     }
 
+    public void setThunderTime(int thunderTime) {
+        this.thunderTime = thunderTime;
+    }
+
     public boolean isRaining() {
         return isRaining;
+    }
+
+    public void setRaining(boolean raining) {
+        isRaining = raining;
     }
 
     public boolean isThundering() {
         return isThundering;
     }
 
-    @Override
-    public int getVersion() {
-        return 0;
-    }
-
-    @Override
-    public Object[] getObjectsToSave() {
-        return new Object[]{clearTime, rainTime, thunderTime, isRaining, isThundering};
-    }
-
-    @Override
-    public void populateWithSavedObjects(Object[] objects) {
-        clearTime = (int) objects[0];
-        rainTime = (int) objects[1];
-        thunderTime = (int) objects[2];
-        isRaining = (boolean) objects[3];
-        isThundering = (boolean) objects[4];
+    public void setThundering(boolean thundering) {
+        isThundering = thundering;
     }
 }

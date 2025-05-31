@@ -1,9 +1,6 @@
 package com.dev.sphone.mod.common.phone;
 
-import fr.aym.acslib.utils.nbtserializer.ISerializable;
-import fr.aym.acslib.utils.packetserializer.ISerializablePacket;
-
-public class News implements ISerializable, ISerializablePacket {
+public class News {
 
     private int id;
     private String title;
@@ -11,6 +8,9 @@ public class News implements ISerializable, ISerializablePacket {
     private String image;
     private long date;
     private String author;
+
+    public News() {
+    }
 
     public News(int id, String title, String content, String image, long date, String author) {
         this.id = id;
@@ -25,43 +25,47 @@ public class News implements ISerializable, ISerializablePacket {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
         return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public String getImage() {
         return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public long getDate() {
         return date;
     }
 
+    public void setDate(long date) {
+        this.date = date;
+    }
+
     public String getAuthor() {
         return author;
     }
 
-    @Override
-    public int getVersion() {
-        return 0;
-    }
-
-    @Override
-    public Object[] getObjectsToSave() {
-        return new Object[]{id, title, content, image, date, author};
-    }
-
-    @Override
-    public void populateWithSavedObjects(Object[] objects) {
-        id = (int) objects[0];
-        title = (String) objects[1];
-        content = (String) objects[2];
-        image = (String) objects[3];
-        date = (long) objects[4];
-        author = (String) objects[5];
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

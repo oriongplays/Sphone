@@ -1,11 +1,8 @@
 package com.dev.sphone.mod.common.phone;
 
-import fr.aym.acslib.utils.nbtserializer.ISerializable;
-import fr.aym.acslib.utils.packetserializer.ISerializablePacket;
-
 import java.util.List;
 
-public class Conversation implements ISerializable, ISerializablePacket {
+public class Conversation {
 
     private List<Message> messages;
     private Contact sender;
@@ -34,27 +31,12 @@ public class Conversation implements ISerializable, ISerializablePacket {
         this.sender = sender;
     }
 
-    @Override
-    public int getVersion() {
-        return 0;
-    }
-
-    @Override
-    public Object[] getObjectsToSave() {
-        return new Object[]{messages, sender};
-    }
-
-    @Override
-    public void populateWithSavedObjects(Object[] objects) {
-        messages = (List<Message>) objects[0];
-        sender = (Contact) objects[1];
-    }
-
     public void addMessage(Message message) {
         messages.add(message);
     }
 
     public Message getLastMessage() {
+        if (messages == null || messages.isEmpty()) return null;
         return messages.get(messages.size() - 1);
     }
 }

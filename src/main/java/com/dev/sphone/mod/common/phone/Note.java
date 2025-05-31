@@ -1,9 +1,6 @@
 package com.dev.sphone.mod.common.phone;
 
-import fr.aym.acslib.utils.nbtserializer.ISerializable;
-import fr.aym.acslib.utils.packetserializer.ISerializablePacket;
-
-public class Note implements ISerializable, ISerializablePacket {
+public class Note {
     private String title;
     private String text;
     private long date;
@@ -22,33 +19,31 @@ public class Note implements ISerializable, ISerializablePacket {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getText() {
         return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public long getDate() {
         return date;
     }
 
+    public void setDate(long date) {
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }
 
-    @Override
-    public int getVersion() {
-        return 0;
-    }
-
-    @Override
-    public Object[] getObjectsToSave() {
-        return new Object[]{title, text, date, id};
-    }
-
-    @Override
-    public void populateWithSavedObjects(Object[] objects) {
-        title = (String) objects[0];
-        text = (String) objects[1];
-        date = (long) objects[2];
-        id = (int) objects[3];
+    public void setId(int id) {
+        this.id = id;
     }
 }

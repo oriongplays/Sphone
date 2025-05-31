@@ -1,9 +1,6 @@
 package com.dev.sphone.mod.common.phone;
 
-import fr.aym.acslib.utils.nbtserializer.ISerializable;
-import fr.aym.acslib.utils.packetserializer.ISerializablePacket;
-
-public class Message implements ISerializable, ISerializablePacket {
+public class Message {
 
     private String message;
     private long date;
@@ -36,23 +33,19 @@ public class Message implements ISerializable, ISerializablePacket {
         return receiver;
     }
 
-
-    @Override
-    public int getVersion() {
-        return 0;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    @Override
-    public Object[] getObjectsToSave() {
-        return new Object[]{message, date, sender, receiver};
+    public void setDate(long date) {
+        this.date = date;
     }
 
-    @Override
-    public void populateWithSavedObjects(Object[] objects) {
-        message = (String) objects[0];
-        date = (long) objects[1];
-        sender = (String) objects[2];
-        receiver = (String) objects[3];
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
 
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 }
