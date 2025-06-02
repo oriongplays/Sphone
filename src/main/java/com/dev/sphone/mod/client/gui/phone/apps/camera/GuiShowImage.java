@@ -3,11 +3,13 @@ package com.dev.sphone.mod.client.gui.phone.apps.camera;
 import com.dev.sphone.api.loaders.AppDetails;
 import com.dev.sphone.api.loaders.AppType;
 import com.dev.sphone.mod.client.gui.phone.GuiBase;
+import com.dev.sphone.mod.client.gui.phone.apps.camera.GuiGallery;
 import com.dev.sphone.mod.utils.UtilsClient;
 import fr.aym.acsguis.component.button.GuiButton;
 import fr.aym.acsguis.component.button.GuiCheckBox;
 import fr.aym.acsguis.component.button.GuiSlider;
 import fr.aym.acsguis.component.panel.GuiPanel;
+import fr.aym.acsguis.utils.ComponentRenderContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -54,10 +56,11 @@ public class GuiShowImage extends GuiBase {
         File[] files = UtilsClient.getAllPhoneScreenshots();
         UtilsClient.InternalDynamicTexture texture = new UtilsClient.InternalDynamicTexture(getImage(files[id]).join());
         gid = texture.getGlTextureId();
+
         GuiPanel screen = new GuiPanel() {
             @Override
-            public void drawBackground(int mouseX, int mouseY, float partialTicks) {
-                super.drawBackground(mouseX, mouseY, partialTicks);
+            public void drawBackground(int mouseX, int mouseY, float partialTicks, ComponentRenderContext context) {
+                super.drawBackground(mouseX, mouseY, partialTicks, context);
                 ScaledResolution scaledResolution = new ScaledResolution(mc);
                 float screenWidth = scaledResolution.getScaledWidth() / 2.1f;
                 float screenHeight = scaledResolution.getScaledHeight() / 1.2f;
@@ -69,7 +72,7 @@ public class GuiShowImage extends GuiBase {
                 GlStateManager.bindTexture(texture.getGlTextureId());
                 GlStateManager.translate(x, y, 0);
                 GlStateManager.scale(0.9f, 0.9f, 0.9f);
-                GlStateManager.color(1 - editR[0], 1 - editG[0], 1 - editB[0]);
+                GlStateManager.color(1 - editR[0], 1 - editG[0], 1 - editB[0], 1.0f);
                 GL11.glBegin(GL11.GL_QUADS);
                 GL11.glTexCoord2f(0.0F, 0.0F);
                 GL11.glVertex3f(-screenWidth, -screenHeight, 0.0F);
@@ -83,7 +86,6 @@ public class GuiShowImage extends GuiBase {
                 GL11.glEnd();
                 GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
                 GlStateManager.popMatrix();
-
             }
         };
         screen.setCssClass("screenlarge");
@@ -140,12 +142,12 @@ public class GuiShowImage extends GuiBase {
         GuiButton save = new GuiButton("Save");
         save.setCssClass("save");
         save.addClickListener((mouseX, mouseY, mouseButton) -> {
-            if(editR[0] == 0 && editG[0] == 0 && editB[0] == 0 && !isBlurred.get()) {
+            if (editR[0] == 0 && editG[0] == 0 && editB[0] == 0 && !isBlurred.get()) {
                 Minecraft.getMinecraft().displayGuiScreen(new GuiGallery().getGuiScreen());
                 Minecraft.getMinecraft().player.sendMessage(new TextComponentString("No changes were made to the image."));
                 return;
             }
-            BufferedImage image = new BufferedImage(texture.getWidth(), texture.getHeight(), BufferedImage.TYPE_INT_RGB); // Arrêter de lire ici.
+            BufferedImage image = new BufferedImage(texture.getWidth(), texture.getHeight(), BufferedImage.TYPE_INT_RGB);
             for (int y = 0; y < texture.getHeight(); y++) {
                 for (int x = 0; x < texture.getWidth(); x++) {
                     int rgb = texture.getTextureData()[x + y * texture.getWidth()];
@@ -207,13 +209,9 @@ public class GuiShowImage extends GuiBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
             Minecraft.getMinecraft().displayGuiScreen(new GuiGallery().getGuiScreen());
         });
         getRoot().add(save);
-
-
     }
 
     @Override
@@ -234,15 +232,17 @@ public class GuiShowImage extends GuiBase {
 
     @Override
     public void guiClose() {
-        TextureUtil.deleteTexture(gid);
+        if (gid != null) {
+            TextureUtil.deleteTexture(gid);
+        }
         super.guiClose();
     }
 
+    @Override
     public List<ResourceLocation> getCssStyles() {
         List<ResourceLocation> styles = new ArrayList<>();
         styles.add(super.getCssStyles().get(0));
         styles.add(new ResourceLocation("sphone:css/gallery.css"));
         return styles;
     }
-
 }

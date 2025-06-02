@@ -12,8 +12,6 @@ import com.dev.sphone.mod.client.gui.phone.apps.plusplusgame.GuiPlusPlusGame;
 import com.dev.sphone.mod.client.gui.phone.apps.settings.GuiSettingList;
 import com.dev.sphone.mod.common.packets.server.PacketRequestData;
 import com.dev.sphone.mod.common.packets.server.PacketSetAnim;
-import fr.aym.acslib.utils.nbtserializer.ISerializable;
-import fr.aym.acslib.utils.packetserializer.ISerializablePacket;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -206,8 +204,6 @@ public class AppManager {
                     true
             ));
         }
-
-
     }
 
     public static void reloadApps(GuiScreen root) {
@@ -215,12 +211,11 @@ public class AppManager {
         init(root);
     }
 
-
     public static List<App> getApps() {
         return apps;
     }
 
-    public static class App implements ISerializable, ISerializablePacket {
+    public static class App {
         Supplier<GuiScreen> gui;
         ResourceLocation icon;
         String uniqueName;
@@ -232,8 +227,7 @@ public class AppManager {
         Runnable runnable;
         boolean isDefaultOnPhone = false;
 
-        public App() {
-        }
+        public App() { }
 
         /**
          * @param gui             Gui to display
@@ -306,11 +300,6 @@ public class AppManager {
             return version;
         }
 
-        @Override
-        public int getVersion() {
-            return 0;
-        }
-
         public void setGui(Supplier<GuiScreen> gui) {
             this.gui = gui;
         }
@@ -337,32 +326,6 @@ public class AppManager {
 
         public void setDefaultOnPhone(boolean defaultOnPhone) {
             isDefaultOnPhone = defaultOnPhone;
-        }
-
-        @Override
-        public Object[] getObjectsToSave() {
-            return new Object[]{
-                    gui,
-                    icon,
-                    name,
-                    version,
-                    showInDebug,
-                    defaultInAppBar,
-                    runnable,
-                    isDefaultOnPhone
-            };
-        }
-
-        @Override
-        public void populateWithSavedObjects(Object[] objects) {
-            gui = (Supplier<GuiScreen>) objects[0];
-            icon = (ResourceLocation) objects[1];
-            name = (String) objects[2];
-            version = (String) objects[3];
-            showInDebug = (boolean) objects[4];
-            defaultInAppBar = (boolean) objects[5];
-            runnable = (Runnable) objects[6];
-            isDefaultOnPhone = (boolean) objects[7];
         }
 
         public void setAppVersion(String version) {

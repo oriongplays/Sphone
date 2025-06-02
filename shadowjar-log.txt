@@ -1,0 +1,476 @@
+To honour the JVM settings for this build a new JVM will be forked. Please consider using the daemon: https://docs.gradle.org/4.10.3/userguide/gradle_daemon.html.
+Daemon will be stopped at the end of the build stopping after processing
+
+> Configure project :
+New Dep: net.minecraftforge:forge:1.12.2-14.23.5.2855_mapped_stable_39-1.12
+
+> Task :compileJava
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:5: error: package fr.aceraticacraft.acsguis.serialization does not exist
+import fr.aceraticacraft.acsguis.serialization.DeserializedData;
+                                              ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Note.java:5: error: package fr.aceraticacraft.acsguis.serialization does not exist
+import fr.aceraticacraft.acsguis.serialization.DeserializedData;
+                                              ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Message.java:5: error: package fr.aceraticacraft.acsguis.serialization does not exist
+import fr.aceraticacraft.acsguis.serialization.DeserializedData;
+                                              ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Conversation.java:5: error: package fr.aceraticacraft.acsguis.serialization does not exist
+import fr.aceraticacraft.acsguis.serialization.DeserializedData;
+                                              ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:5: error: package fr.aceraticacraft.acsguis.serialization does not exist
+import fr.aceraticacraft.acsguis.serialization.DeserializedData;
+                                              ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:98: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data) {
+                                         ^
+  symbol:   class DeserializedData
+  location: class Contact
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Note.java:49: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data) {
+                                         ^
+  symbol:   class DeserializedData
+  location: class Note
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Message.java:52: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data) {
+                                         ^
+  symbol:   class DeserializedData
+  location: class Message
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Conversation.java:49: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data) {
+                                         ^
+  symbol:   class DeserializedData
+  location: class Conversation
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:60: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data) {
+                                         ^
+  symbol:   class DeserializedData
+  location: class News
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:21: error: cannot find symbol
+    private final Map<ComponentStyle, floateger> cache = new HashMap<>();
+                                      ^
+  symbol:   class floateger
+  location: class CustomGridLayout
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:22: error: cannot find symbol
+    private final Map<ComponentStyle, floateger> cacheY = new HashMap<>();
+                                      ^
+  symbol:   class floateger
+  location: class CustomGridLayout
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:42: error: constructor CustomGridLayout(float,float,float,GridDirection,float) is already defined in class CustomGridLayout
+    public CustomGridLayout(float width, float height, float spacing, GridDirection direction, float elementsPerLine) {
+           ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:65: error: method columnLayout(float,float) is already defined in class CustomGridLayout
+    public static CustomGridLayout columnLayout(float height, float spacing) {
+                                   ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Weather.java:54: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data); {
+                                         ^
+  symbol:   class DeserializedData
+  location: class Weather
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Notification.java:90: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data); {
+                                         ^
+  symbol:   class DeserializedData
+  location: class Notification
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Settings.java:51: error: cannot find symbol
+    public void populateWithSavedObjects(DeserializedData data); {
+                                         ^
+  symbol:   class DeserializedData
+  location: class Settings
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:99: error: cannot find symbol
+        id = (int) objects[0];
+                   ^
+  symbol:   variable objects
+  location: class Contact
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:100: error: cannot find symbol
+        name = (String) objects[1];
+                        ^
+  symbol:   variable objects
+  location: class Contact
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:101: error: cannot find symbol
+        lastname = (String) objects[2];
+                            ^
+  symbol:   variable objects
+  location: class Contact
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:102: error: cannot find symbol
+        numero = (String) objects[3];
+                          ^
+  symbol:   variable objects
+  location: class Contact
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:103: error: cannot find symbol
+        notes = (String) objects[4];
+                         ^
+  symbol:   variable objects
+  location: class Contact
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Contact.java:104: error: cannot find symbol
+        photo = (String) objects[5];
+                         ^
+  symbol:   variable objects
+  location: class Contact
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Note.java:50: error: cannot find symbol
+        title = (String) objects[0];
+                         ^
+  symbol:   variable objects
+  location: class Note
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Note.java:51: error: cannot find symbol
+        text = (String) objects[1];
+                        ^
+  symbol:   variable objects
+  location: class Note
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Note.java:52: error: cannot find symbol
+        date = (long) objects[2];
+                      ^
+  symbol:   variable objects
+  location: class Note
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Note.java:53: error: cannot find symbol
+        id = (int) objects[3];
+                   ^
+  symbol:   variable objects
+  location: class Note
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Message.java:53: error: cannot find symbol
+        message = (String) objects[0];
+                           ^
+  symbol:   variable objects
+  location: class Message
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Message.java:54: error: cannot find symbol
+        date = (long) objects[1];
+                      ^
+  symbol:   variable objects
+  location: class Message
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Message.java:55: error: cannot find symbol
+        sender = (String) objects[2];
+                          ^
+  symbol:   variable objects
+  location: class Message
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Message.java:56: error: cannot find symbol
+        receiver = (String) objects[3];
+                            ^
+  symbol:   variable objects
+  location: class Message
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Conversation.java:50: error: cannot find symbol
+        messages = (List<Message>) objects[0];
+                                   ^
+  symbol:   variable objects
+  location: class Conversation
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\Conversation.java:51: error: cannot find symbol
+        sender = (Contact) objects[1];
+                           ^
+  symbol:   variable objects
+  location: class Conversation
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:61: error: cannot find symbol
+        id = (int) objects[0];
+                   ^
+  symbol:   variable objects
+  location: class News
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:62: error: cannot find symbol
+        title = (String) objects[1];
+                         ^
+  symbol:   variable objects
+  location: class News
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:63: error: cannot find symbol
+        content = (String) objects[2];
+                           ^
+  symbol:   variable objects
+  location: class News
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:64: error: cannot find symbol
+        image = (String) objects[3];
+                         ^
+  symbol:   variable objects
+  location: class News
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:65: error: cannot find symbol
+        date = (long) objects[4];
+                      ^
+  symbol:   variable objects
+  location: class News
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\common\phone\News.java:66: error: cannot find symbol
+        author = (String) objects[5];
+                          ^
+  symbol:   variable objects
+  location: class News
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\AppManager.java:223: error: App is not abstract and does not override abstract method populateWithSavedObjects(DeserializedData) in ISerializable
+    public static class App implements ISerializable, ISerializablePacket {
+                  ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\AppManager.java:356: error: method does not override or implement a method from a supertype
+        @Override
+        ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:20: error: type argument ComponentStyle is not within bounds of type-variable T
+public class CustomGridLayout implements PanelLayout<ComponentStyle> {
+                                                     ^
+  where T is a type-variable:
+    T extends InternalComponentStyle declared in interface PanelLayout
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:20: error: CustomGridLayout is not abstract and does not override abstract method onChildSizeChange(ComponentStyle) in PanelLayout
+public class CustomGridLayout implements PanelLayout<ComponentStyle> {
+       ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:37: error: cannot find symbol
+            this.width.setRelative(1, CssValue.Unit.RELATIVE_float);
+                                                   ^
+  symbol:   variable RELATIVE_float
+  location: class Unit
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:39: error: cannot find symbol
+            this.height.setRelative(1, CssValue.Unit.RELATIVE_float);
+                                                    ^
+  symbol:   variable RELATIVE_float
+  location: class Unit
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:80: error: cannot find symbol
+            elements = container.getRenderWidth() / getWidth();
+                                ^
+  symbol:   method getRenderWidth()
+  location: variable container of type GuiPanel
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:95: error: cannot find symbol
+            elements = container.getRenderHeight() / getHeight(target);
+                                ^
+  symbol:   method getRenderHeight()
+  location: variable container of type GuiPanel
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:138: error: resolution has private access in GuiFrame
+                GuiFrame.resolution.getScaledWidth(),
+                        ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\layout\CustomGridLayout.java:139: error: resolution has private access in GuiFrame
+                GuiFrame.resolution.getScaledHeight(),
+                        ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\GuiBase.java:62: error: cannot find symbol
+        getStyle().setBackgroundColor(Color.TRANSLUCENT);
+                  ^
+  symbol:   method setBackgroundColor(int)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\GuiBase.java:70: error: cannot find symbol
+        Case.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation(SPhone.MOD_ID, "textures/ui/background/" + getSettings().getBackground() + ".png")));
+                       ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\GuiBase.java:75: error: cannot find symbol
+            Case.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation(SPhone.MOD_ID, "textures/ui/background/acsgui.png")));
+                           ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\GuiBase.java:116: error: cannot find symbol
+                HomeBar.setVisible(false);
+                       ^
+  symbol:   method setVisible(boolean)
+  location: variable HomeBar of type GuiPanel
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:87: error: method does not override or implement a method from a supertype
+                @Override
+                ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:101: error: cannot find symbol
+            shadowPanel.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/appstore/shadow.png")));
+                                  ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:110: error: cannot find symbol
+            appIcon.getStyle().setTexture(new GuiTextureSprite(app.getIcon()));
+                              ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:119: error: cannot find symbol
+        appListPanel.getxSlider().setVisible(true);
+                                 ^
+  symbol:   method setVisible(boolean)
+  location: class GuiSlider
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:140: error: cannot find symbol
+        news.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/ui/icons/appstore/news.png")));
+                       ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:144: error: cannot find symbol
+        games.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/ui/icons/appstore/games.png")));
+                        ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:148: error: cannot find symbol
+        search.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/ui/icons/appstore/search.png")));
+                         ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:174: error: cannot find symbol
+            appIcon.getStyle().setTexture(new GuiTextureSprite(app.getIcon()));
+                              ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreHome.java:196: error: cannot find symbol
+        recommendedPanel.getySlider().setVisible(true);
+                                     ^
+  symbol:   method setVisible(boolean)
+  location: class GuiSlider
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreSeeApp.java:67: error: cannot find symbol
+            appIconPanel.getStyle().setTexture(new GuiTextureSprite(app.getIcon()));
+                                   ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreSeeApp.java:83: error: cannot find symbol
+                buttonGetOrAlready.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/ui/icons/appstore/already.png")));
+                                             ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\appstore\GuiAppStoreSeeApp.java:88: error: cannot find symbol
+                buttonGetOrAlready.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/ui/icons/appstore/get.png")));
+                                             ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\GuiHome.java:56: error: cannot find symbol
+        appSelector.getStyle().setVisible(false);
+                              ^
+  symbol:   method setVisible(boolean)
+  location: interface TextComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\GuiHome.java:105: error: cannot find symbol
+            appPanel.getStyle().setTexture(new GuiTextureSprite(app.getIcon()));
+                               ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiGallery.java:55: error: method does not override or implement a method from a supertype
+                @Override
+                ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiGallery.java:57: error: method drawBackground in class GuiComponent cannot be applied to given types;
+                    super.drawBackground(mouseX, mouseY, partialTicks);
+                         ^
+  required: int,int,float,ComponentRenderContext
+  found: int,int,float
+  reason: actual and formal argument lists differ in length
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiGallery.java:62: error: incompatible types: possible lossy conversion from float to int
+                    int x = getScreenX() + getWidth() / 2;
+                                         ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiGallery.java:63: error: incompatible types: possible lossy conversion from float to int
+                    int y = getScreenY() + getHeight() / 2;
+                                         ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiImageSelector.java:60: error: method does not override or implement a method from a supertype
+                @Override
+                ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiImageSelector.java:62: error: method drawBackground in class GuiComponent cannot be applied to given types;
+                    super.drawBackground(mouseX, mouseY, partialTicks);
+                         ^
+  required: int,int,float,ComponentRenderContext
+  found: int,int,float
+  reason: actual and formal argument lists differ in length
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiImageSelector.java:67: error: incompatible types: possible lossy conversion from float to int
+                    int x = getScreenX() + getWidth() / 2;
+                                         ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiImageSelector.java:68: error: incompatible types: possible lossy conversion from float to int
+                    int y = getScreenY() + getHeight() / 2;
+                                         ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiShowImage.java:58: error: method does not override or implement a method from a supertype
+            @Override
+            ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\camera\GuiShowImage.java:60: error: method drawBackground in class GuiComponent cannot be applied to given types;
+                super.drawBackground(mouseX, mouseY, partialTicks);
+                     ^
+  required: int,int,float,ComponentRenderContext
+  found: int,int,float
+  reason: actual and formal argument lists differ in length
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiContactsList.java:67: error: method does not override or implement a method from a supertype
+                    @Override
+                    ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiContactsList.java:69: error: method drawBackground in class GuiComponent cannot be applied to given types;
+                        super.drawBackground(mouseX, mouseY, partialTicks);
+                             ^
+  required: int,int,float,ComponentRenderContext
+  found: int,int,float
+  reason: actual and formal argument lists differ in length
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiContactsList.java:74: error: incompatible types: possible lossy conversion from float to int
+                        int x = getScreenX() + getWidth() / 2;
+                                             ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiContactsList.java:75: error: incompatible types: possible lossy conversion from float to int
+                        int y = getScreenY() + getHeight() / 2;
+                                             ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiPhotoElement.java:42: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiPhotoElement.java:44: error: method drawBackground in class GuiComponent cannot be applied to given types;
+        super.drawBackground(mouseX, mouseY, partialTicks);
+             ^
+  required: int,int,float,ComponentRenderContext
+  found: int,int,float
+  reason: actual and formal argument lists differ in length
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiPhotoElement.java:50: error: incompatible types: possible lossy conversion from float to int
+        int x = getScreenX() + getWidth() / 2;
+                             ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiPhotoElement.java:51: error: incompatible types: possible lossy conversion from float to int
+        int y = getScreenY() + getHeight() / 2;
+                             ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiViewContact.java:72: error: method does not override or implement a method from a supertype
+                @Override
+                ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiViewContact.java:74: error: method drawBackground in class GuiComponent cannot be applied to given types;
+                    super.drawBackground(mouseX, mouseY, partialTicks);
+                         ^
+  required: int,int,float,ComponentRenderContext
+  found: int,int,float
+  reason: actual and formal argument lists differ in length
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiViewContact.java:79: error: incompatible types: possible lossy conversion from float to int
+                    int x = getScreenX() + getWidth() / 2;
+                                         ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\contacts\GuiViewContact.java:80: error: incompatible types: possible lossy conversion from float to int
+                    int y = getScreenY() + getHeight() / 2;
+                                         ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\plusplusgame\GuiPlusPlusGame.java:63: error: incompatible types: possible lossy conversion from float to int
+        int wmax = backframe.getWidth() - 50;
+                                        ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\plusplusgame\GuiPlusPlusGame.java:64: error: incompatible types: possible lossy conversion from float to int
+        int hmax = backframe.getHeight() - 50;
+                                         ^
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\plusplusgame\GuiPlusPlusGame.java:80: error: cannot find symbol
+            backframe.getStyle().setBackgroundColor(0xFF000000 + (int) (Math.random() * 0xFFFFFF));
+                                ^
+  symbol:   method setBackgroundColor(int)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\settings\GuiAppsSettings.java:80: error: cannot find symbol
+        customisation_icon.getStyle().setTexture(new GuiTextureSprite(iconLoc, 0, 0, 0, 0));
+                                     ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\settings\GuiCustomisation.java:66: error: cannot find symbol
+            backgroundpanel.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation(SPhone.MOD_ID, "textures/ui/background/" + id + ".png"), 0, 0, 0,0));
+                                      ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\settings\GuiCustomisation.java:71: error: cannot find symbol
+                oscuridadLabel.getStyle().setBackgroundColor(0xFF00FFFF);
+                                         ^
+  symbol:   method setBackgroundColor(int)
+  location: interface TextComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\settings\GuiCustomisation.java:73: error: cannot find symbol
+                oscuridadLabel.getStyle().setBackgroundColor(0x00FFFFFF);
+                                         ^
+  symbol:   method setBackgroundColor(int)
+  location: interface TextComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\settings\GuiSettingList.java:100: error: cannot find symbol
+        customisation_icon.getStyle().setTexture(new GuiTextureSprite(iconLoc, 0, 0, 0, 0));
+                                     ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\weather\GuiWeather.java:33: error: cannot find symbol
+        getStyle().setBackgroundColor(Color.TRANSLUCENT);
+                  ^
+  symbol:   method setBackgroundColor(int)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\weather\GuiWeather.java:52: error: cannot find symbol
+        weatherIcon.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/ui/icons/weather/"+getTypeFormat(weatherType)+".png")));
+                              ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\apps\weather\GuiWeather.java:71: error: cannot find symbol
+        forecastIcon.getStyle().setTexture(new GuiTextureSprite(new ResourceLocation("sphone:textures/ui/icons/weather/"+getTypeFormat(forecastType)+".png")));
+                               ^
+  symbol:   method setTexture(GuiTextureSprite)
+  location: interface ComponentStyle
+Note: C:\ForgeSPhone\src\main\java\com\dev\sphone\mod\client\gui\phone\GuiBase.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+100 errors
+
+> Task :compileJava FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 5.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/4.10.3/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 13s
+1 actionable task: 1 executed
