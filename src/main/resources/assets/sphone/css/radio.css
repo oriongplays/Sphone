@@ -1,0 +1,82 @@
+#root {
+    background-color: #000000;
+    right: 32px;
+    width: 298px;
+    height: 646px;
+    border-radius: 41px;
+    bottom: 42px;
+    z-index: 1;
+}
+
+.home {
+    width: 1920px;
+    height: 1080px;
+}
+
+/* Painel principal do rádio */
+.frame_0 {
+    left: 78%;
+    width: 204px;
+    height: 540px;
+    bottom: 2%;
+    background-image: url("sphone:textures/ui/background/radio.png");
+}
+
+/* Título da janela (se usar) */
+.radio-label-title {
+    color: #ffffff;
+    font-family: "dnx:montserratlow";
+    font-size: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Visor onde aparece a frequência */
+.radio-visor {
+    color: #8effa1;
+    font-family: "dnx:montserratlow";
+    font-size: 5px;
+    background: none;
+    text-align: center;
+    width: 100px;
+    height: 36px;
+    left: 29%;
+    top: 38%;
+}
+
+/* Painel dos botões */
+.radio-buttons {
+    background: none;
+    top: 64%;
+    left: 23%;
+    /* width/height pode ser ajustado no Java */
+}
+
+.radio-btn, .radio-btn-del, .radio-btn-star {
+    background: none;
+    background-repeat: no-repeat;
+    border: none;
+    width: 35px;
+    height: 35px;
+    color: #ffffff;
+    font-size: 0px;
+    text-align: center;
+    font-family: "dnx:montserratlow";
+}
+
+/* Botão de deletar */
+.radio-btn-del {
+    background: none;
+    color: #ffffff;
+}
+
+/* Se der para setar classe no * no java, use isso para diferenciar */
+.radio-btn-star {
+    background: none;
+    color: #ffffff;
+}
+
+.radio-btn:hover, .radio-btn-del:hover, .radio-btn-star:hover {
+    background: none;
+    color: #ffffff;
+}

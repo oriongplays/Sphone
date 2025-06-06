@@ -12,12 +12,15 @@ import com.dev.sphone.mod.common.packets.server.call.PacketCallResponse;
 import com.dev.sphone.mod.common.packets.server.call.gabiwork.PacketAcceptRequest;
 import com.dev.sphone.mod.common.packets.server.call.gabiwork.PacketQuitCall;
 import com.dev.sphone.mod.common.packets.server.call.gabiwork.PacketSendRequestCall;
+import com.dev.sphone.mod.common.packets.server.HandlerTuneRadio;
+import com.dev.sphone.mod.common.packets.client.PacketTuneRadio;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class Network {
 
-    static int id = -1;
+    static int id = 0; // ID deve iniciar em 0 para evitar conflito!
+
     public static void init(){
         SPhone.network = NetworkRegistry.INSTANCE.newSimpleChannel("sphone");
         // Global
@@ -52,10 +55,14 @@ public class Network {
         packetFromServer(PacketManageApp.ServerHandler.class, PacketManageApp.class);
         packetFromServer(PacketSetBackground.ServerHandler.class, PacketSetBackground.class);
 
-        // Contacts
+        // --- RADIO ---
+        // Adicione este registro para o rádio funcionar!
+        packetFromServer(com.dev.sphone.mod.common.packets.server.HandlerTuneRadio.class,
+                         com.dev.sphone.mod.common.packets.client.PacketTuneRadio.class);
+
+        // Contacts (descomentado se for usar)
         //packetFromServer(PacketGetContacts.ServerHandler.class, PacketGetContacts.class);
         //packetFromServer(PacketUpdateContacts.ServerHandler.class, PacketUpdateContacts.class);
-
     }
 
     public static void packetFromClient(Class handler, Class packet) {

@@ -8,6 +8,7 @@ import com.dev.sphone.mod.client.ClientEventHandler;
 import com.dev.sphone.mod.client.SPhoneTab;
 import com.dev.sphone.mod.client.gui.phone.NotificationManager;
 import com.dev.sphone.mod.common.GuiHandler;
+import com.dev.sphone.mod.common.SPhoneEvents;
 import com.dev.sphone.mod.common.packets.Network;
 import com.dev.sphone.mod.common.proxy.CommonProxy;
 import com.dev.sphone.mod.common.register.RegisterHandler;
@@ -37,7 +38,6 @@ import org.apache.logging.log4j.Logger;
         version = SPhone.VERSION,
         dependencies = "after: voicechat; required-after: voicechat@[1.12.2-2.4.13,); required-after: acslib@[1.2.2,);"
 )
-
 public class SPhone {
 
     public static final String MOD_ID = "sphone";
@@ -46,7 +46,7 @@ public class SPhone {
     public static final boolean DEV_MOD = false;
 
     @SidedProxy(clientSide = "com.dev.sphone.mod.common.proxy.ClientProxy", serverSide = "com.dev.sphone.mod.common.proxy.CommonProxy")
-    public static CommonProxy PROXY;
+    public static CommonProxy proxy; // Importante: exatamente 'proxy'
 
     public static final CreativeTabs SPHONE_TAB = new SPhoneTab("tab");
 
@@ -57,14 +57,16 @@ public class SPhone {
 
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent e) {
-        PROXY.preInit();
+        proxy.preInit();
         Network.init();
 
         MinecraftForge.EVENT_BUS.register(new RegisterHandler());
         MinecraftForge.EVENT_BUS.register(new VoiceNetwork());
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new SPhoneEvents());
         logger = e.getModLog();
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
+
         if (e.getSide().isClient()) {
             ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/base.css"));
             ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/home.css"));
@@ -86,6 +88,7 @@ public class SPhone {
             ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/appstore.css"));
             ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/plusplusgame.css"));
             ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/twitter.css"));
+            ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/radio.css"));
             MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
 
             if (isUsingMod("com.mrcrayfish.obfuscate.Obfuscate"))
@@ -104,13 +107,13 @@ public class SPhone {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
-        PROXY.init();
+        proxy.init();
         if (isUsingMod("com.mrcrayfish.obfuscate.Obfuscate"))
             ObfuscateUtils.init();
     }
 
     @Mod.EventHandler
-    public void onServerStart(FMLServerStartingEvent e) throws DatabaseException {
+    public void onServerStart(FMLServerStartingEvent e) throws com.dev.sphone.mod.utils.exceptions.DatabaseException {
         e.registerServerCommand(new CommandGivePhone());
         MethodesBDDImpl.checkFile();
 
@@ -120,7 +123,6 @@ public class SPhone {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public static boolean isUsingMod(String mainClass) {

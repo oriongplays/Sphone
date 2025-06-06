@@ -1,8 +1,8 @@
 package com.dev.sphone.api.voicemanager.voicechat;
 
 import com.dev.sphone.api.voicemanager.IVoiceManager;
-import de.maxhenkel.voicechat.api.Group;
 import net.minecraft.entity.player.EntityPlayerMP;
+import de.maxhenkel.voicechat.api.Group;
 
 public class VoiceNetwork implements IVoiceManager {
 
@@ -10,26 +10,30 @@ public class VoiceNetwork implements IVoiceManager {
     }
 
     @Override
-    public void addPlayertoCall(EntityPlayerMP player, String callNumber) {
-        if(VoiceAddon.groupExists(callNumber)) {
-            System.out.println("addPlayertoCall : " + callNumber + " exists");
-            VoiceAddon.addToGroup(callNumber, player);
-        } else {
-            System.out.println("addPlayertoCall : " + callNumber + " doesn't exists");
-            VoiceAddon.createGroup(callNumber, false, Group.Type.ISOLATED);
-            VoiceAddon.addToGroup(callNumber, player);
-        }
-        /*
-        if(VoiceManager.callMap.containsKey(callNumber)) {
-            VoiceManager.callMap.get(callNumber).add(player);
-        } else {
-            VoiceManager.callMap.put(callNumber, Collections.singletonList(player));
-        }*/
+public void addPlayertoCall(EntityPlayerMP player, String callNumber) {
+    if (VoiceAddon.groupExists(callNumber)) {
+        System.out.println("addPlayertoCall : " + callNumber + " exists");
+        VoiceAddon.addToGroup(callNumber, player);
+    } else {
+        System.out.println("addPlayertoCall : " + callNumber + " doesn't exists");
+        VoiceAddon.createGroup(callNumber, false, Group.Type.OPEN);
+        VoiceAddon.addToGroup(callNumber, player);
     }
+}
 
     @Override
     public void removePlayerFromCall(EntityPlayerMP player) {
-        VoiceAddon.removeFromActualGroup(player);
+        // Pega o grupo atual do player
+        String group = VoiceAddon.getGroup(player);
+        if (group != null) {
+            VoiceAddon.removeFromActualGroup(player);
+
+            // Depois de remover, verifica se está vazio e deleta só se NÃO tiver ninguém
+            if (VoiceAddon.getPlayersInGroup(group).isEmpty()) {
+                VoiceAddon.removeGroup(group);
+                System.out.println("Grupo " + group + " deletado pois ficou vazio!");
+            }
+        }
     }
 
     @Override
@@ -39,11 +43,6 @@ public class VoiceNetwork implements IVoiceManager {
 
     @Override
     public void initAddon() {
-
+        // Implementação opcional
     }
-
-
-    //TODO packet request data verif network with player
-
-
 }

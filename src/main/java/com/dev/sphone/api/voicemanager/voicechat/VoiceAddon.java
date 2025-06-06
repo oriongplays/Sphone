@@ -2,7 +2,6 @@ package com.dev.sphone.api.voicemanager.voicechat;
 
 import com.dev.sphone.SPhone;
 import com.dev.sphone.mod.common.packets.client.PacketOpenPhone;
-import com.dev.sphone.mod.common.packets.client.PacketPlayerHudState;
 import de.maxhenkel.voicechat.Voicechat;
 import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.EventRegistration;
@@ -20,6 +19,8 @@ import net.minecraft.util.text.TextComponentString;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @ForgeVoicechatPlugin
 public class VoiceAddon implements VoicechatPlugin {
@@ -43,7 +44,13 @@ public class VoiceAddon implements VoicechatPlugin {
 
     public void onServerStarted(VoicechatServerStartedEvent e) {
         api = e.getVoicechat();
+        
+        if (api == null) {
+    System.out.println("VoiceAddon.api is NULL - Cannot create group!");
+    return;
+}
     }
+    
 
     public static void createGroup(String name, Boolean persistent, Group.Type type) {
         StringBuilder password = new StringBuilder();
@@ -56,7 +63,7 @@ public class VoiceAddon implements VoicechatPlugin {
                 .setPersistent(persistent)
                 .setType(type)
                 .setPassword(password.toString())
-                 .build();
+                .build();
         GroupMap.put(name, g);
     }
 
@@ -73,45 +80,54 @@ public class VoiceAddon implements VoicechatPlugin {
     public static void removeFromActualGroup(EntityPlayer player) {
         VoicechatConnection connection = api.getConnectionOf(player.getUniqueID());
         if (connection != null) {
-            String getGroup = getGroup(player);
-            removeGroup(getGroup);
+            String groupName = getGroup(player);
+            if (groupName != null) {
+                // Remove apenas o próprio player do grupo
+                connection.setGroup(null);
 
+                // Agora verifica se ficou vazio!
+                List<EntityPlayer> players = getPlayersInGroup(groupName);
+                if (players.isEmpty()) {
+                    // NINGUÉM no grupo, pode deletar
+                    Group group = GroupMap.get(groupName);
 
-            Server server = Voicechat.SERVER.getServer();
-            if(server != null) {
-                ServerGroupManager groupManager = server.getGroupManager();
-                if(connection.getGroup() != null) {
-                    UUID groupId = connection.getGroup().getId();
+                    removeGroup(groupName);
 
-                    PlayerStateManager manager = server.getPlayerStateManager();
-                    for(PlayerState state : manager.getStates()){
-                        if(state.hasGroup() && state.getGroup().equals(groupId)){
-                            VoicechatConnection target = api.getConnectionOf(state.getUuid());
-                            if (target != null && target.getGroup() != null) {
-                                api.removeGroup(target.getGroup().getId());
-                                target.setGroup(null);
-                                if (target.getPlayer().getPlayer() instanceof EntityPlayer) {
-                                    EntityPlayer targetPlayer = (EntityPlayer) target.getPlayer().getPlayer();
-                                    SPhone.network.sendTo(new PacketOpenPhone(PacketOpenPhone.EnumAction.HOME), (EntityPlayerMP) targetPlayer);
-                                }
-                            }
-
+                    if (group != null) {
+                        Server server = Voicechat.SERVER.getServer();
+                        if (server != null) {
+                            ServerGroupManager groupManager = server.getGroupManager();
+                            groupManager.removeGroup(group.getId());
+                            broadcastRemoveGroup(server, group.getId());
                         }
+                        api.removeGroup(group.getId());
                     }
-
-
-                    groupManager.removeGroup(groupId);
-
-                    broadcastRemoveGroup(server, groupId);
                 }
             }
-
-            if(connection.getGroup() != null) {
-                api.removeGroup(connection.getGroup().getId());
-                connection.setGroup(null);
-            }
-            //SPhone.network.sendTo(new PacketPlayerHudState(true), (EntityPlayerMP) player);
         }
+    }
+
+    // NOVO: Conta quantos players ainda estão no grupo
+    public static List<EntityPlayer> getPlayersInGroup(String groupName) {
+        List<EntityPlayer> players = new ArrayList<>();
+        if (api == null) return players;
+
+        Group group = GroupMap.get(groupName);
+        if (group == null) return players;
+
+        Server server = Voicechat.SERVER.getServer();
+        if (server == null) return players;
+        PlayerStateManager manager = server.getPlayerStateManager();
+
+        for (PlayerState state : manager.getStates()) {
+            if (state.hasGroup() && state.getGroup().equals(group.getId())) {
+                VoicechatConnection conn = api.getConnectionOf(state.getUuid());
+                if (conn != null && conn.getPlayer() != null && conn.getPlayer().getPlayer() instanceof EntityPlayer) {
+                    players.add((EntityPlayer) conn.getPlayer().getPlayer());
+                }
+            }
+        }
+        return players;
     }
 
     private static void broadcastRemoveGroup(Server server, UUID group) {
@@ -147,5 +163,4 @@ public class VoiceAddon implements VoicechatPlugin {
             return connection.getGroup() != null;
         }
     }
-
 }

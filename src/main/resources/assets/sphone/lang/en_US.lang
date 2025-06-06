@@ -4,6 +4,7 @@ itemGroup.tab=SPhone
 
 item.sim_card.name=SIM Card
 item.phone.name=SPhone 1
+item.radio.name=Radio
 
 sphone.timeformat=HH:mm
 
