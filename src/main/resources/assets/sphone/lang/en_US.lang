@@ -65,3 +65,5 @@ sphone.settings.phonenumber=Phone number
 sphone.settings.errorbg=Unable to load the background
 
 sphone.plusplusgame.points=Points :
+sphone.voice.muted=Group voice muted
+sphone.voice.unmuted=Group voice unmuted

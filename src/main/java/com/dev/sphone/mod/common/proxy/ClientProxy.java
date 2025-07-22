@@ -16,6 +16,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(ItemsRegister.INSTANCE);
         ClientRegistry.registerKeyBinding(SPhoneKeys.DEBUG);
         ClientRegistry.registerKeyBinding(SPhoneKeys.DEBUG_TWO);
+        ClientRegistry.registerKeyBinding(SPhoneKeys.TOGGLE_GROUP_MUTE);
         UtilsServer.registerAllCssFiles();
     }
 

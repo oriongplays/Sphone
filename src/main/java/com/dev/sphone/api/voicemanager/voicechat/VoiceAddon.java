@@ -8,6 +8,7 @@ import de.maxhenkel.voicechat.api.events.EventRegistration;
 import de.maxhenkel.voicechat.api.events.VoicechatServerStartedEvent;
 import de.maxhenkel.voicechat.net.NetManager;
 import de.maxhenkel.voicechat.net.RemoveGroupPacket;
+import de.maxhenkel.voicechat.api.events.SoundPacketEvent;
 import de.maxhenkel.voicechat.voice.common.PlayerState;
 import de.maxhenkel.voicechat.voice.server.PlayerStateManager;
 import de.maxhenkel.voicechat.voice.server.Server;
@@ -27,6 +28,8 @@ public class VoiceAddon implements VoicechatPlugin {
 
     public static VoicechatServerApi api;
     private static final Map<String, Group> GroupMap = new HashMap<>();
+    /** Tracks players who muted their microphone for group calls. */
+    private static final Map<UUID, Boolean> MutedPlayers = new HashMap<>();
 
     @Override
     public String getPluginId() {
@@ -40,6 +43,9 @@ public class VoiceAddon implements VoicechatPlugin {
 
     public void registerEvents(EventRegistration registration) {
         registration.registerEvent(VoicechatServerStartedEvent.class, this::onServerStarted, 100);
+        // Listen for outgoing sound packets so we can filter group audio
+        // without affecting normal proximity or whisper voice chat.
+        registration.registerEvent(SoundPacketEvent.class, VoiceAddon::onSoundPacket, 100);
     }
 
     public void onServerStarted(VoicechatServerStartedEvent e) {
@@ -75,6 +81,27 @@ public class VoiceAddon implements VoicechatPlugin {
                 connection.setGroup(g);
             }
         }
+    }
+
+    /**
+     * Removes the player from their current voice chat group without deleting the group.
+     * This is used to allow temporary call muting while keeping the group intact.
+     */
+    public static void leaveGroup(EntityPlayer player) {
+        VoicechatConnection connection = api.getConnectionOf(player.getUniqueID());
+        if (connection != null && connection.getGroup() != null) {
+            connection.setGroup(null);
+        }
+    }
+
+    /** Sets the muted state for the given player in group calls. */
+    public static void setGroupMute(EntityPlayerMP player, boolean mute) {
+        MutedPlayers.put(player.getUniqueID(), mute);
+    }
+
+    /** Returns true if the player muted their microphone for group calls. */
+    public static boolean isGroupMuted(EntityPlayerMP player) {
+        return MutedPlayers.getOrDefault(player.getUniqueID(), false);
     }
 
     public static void removeFromActualGroup(EntityPlayer player) {
@@ -161,6 +188,28 @@ public class VoiceAddon implements VoicechatPlugin {
             return false;
         } else {
             return connection.getGroup() != null;
+        }
+    }
+    
+        /**
+     * Cancels sound packets destined for group chat when the sender muted their
+     * group microphone. This still allows proximity and whisper voice to work
+     * normally so players can talk with nearby players while muted.
+     */
+    private static void onSoundPacket(SoundPacketEvent<?> event) {
+        VoicechatConnection sender = event.getSenderConnection();
+        if (sender == null) {
+            return;
+        }
+        if (!(sender.getPlayer().getPlayer() instanceof EntityPlayerMP)) {
+            return;
+        }
+                if (!SoundPacketEvent.SOURCE_GROUP.equals(event.getSource())) {
+            return;
+        }
+        EntityPlayerMP player = (EntityPlayerMP) sender.getPlayer().getPlayer();
+        if (isGroupMuted(player)) {
+            event.cancel();
         }
     }
 }

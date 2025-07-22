@@ -46,6 +46,8 @@ sphone.appstore.usesettings=Utilisez les paramètres pour désinstaller les appl
 sphone.settings.errorbg=Unable to load the background
 
 sphone.plusplusgame.points=Points :
+sphone.voice.muted=Micro du groupe coupé
+sphone.voice.unmuted=Micro du groupe réactivé
 
 sphone.phone.running=Appel en cours
 sphone.phone.incoming=Appel entrant

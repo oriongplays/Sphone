@@ -12,6 +12,7 @@ import com.dev.sphone.mod.common.packets.server.call.PacketCallResponse;
 import com.dev.sphone.mod.common.packets.server.call.gabiwork.PacketAcceptRequest;
 import com.dev.sphone.mod.common.packets.server.call.gabiwork.PacketQuitCall;
 import com.dev.sphone.mod.common.packets.server.call.gabiwork.PacketSendRequestCall;
+import com.dev.sphone.mod.common.packets.server.call.gabiwork.PacketToggleGroupMute;
 import com.dev.sphone.mod.common.packets.server.HandlerTuneRadio;
 import com.dev.sphone.mod.common.packets.client.PacketTuneRadio;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -51,6 +52,7 @@ public class Network {
         packetFromServer(PacketAcceptRequest.ServerHandler.class, PacketAcceptRequest.class);
 
         packetFromServer(PacketQuitCall.ServerHandler.class, PacketQuitCall.class);
+        packetFromServer(PacketToggleGroupMute.ServerHandler.class, PacketToggleGroupMute.class);
 
         packetFromServer(PacketManageApp.ServerHandler.class, PacketManageApp.class);
         packetFromServer(PacketSetBackground.ServerHandler.class, PacketSetBackground.class);
