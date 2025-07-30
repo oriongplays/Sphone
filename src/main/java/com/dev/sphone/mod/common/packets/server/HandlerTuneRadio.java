@@ -17,26 +17,25 @@ public class HandlerTuneRadio implements IMessageHandler<PacketTuneRadio, IMessa
         EntityPlayerMP player = ctx.getServerHandler().player;
         int freq = message.getFrequency();
 
-        player.getServerWorld().addScheduledTask(() -> {
-            removeFromAllGroups(player);
-            VoiceManager.voiceManager.removePlayerFromCall(player);
+        player.getServerWorld().addScheduledTask(new Runnable() {
+            @Override
+            public void run() {
+                removeFromAllGroups(player);
+                if (VoiceManager.voiceManager != null) {
+                    VoiceManager.voiceManager.removePlayerFromCall(player);
+                }
 
             if (freq >= 1 && freq <= 1000) {
                 RADIO_GROUPS.computeIfAbsent(freq, k -> new HashSet<>()).add(player.getUniqueID());
                 player.sendMessage(new net.minecraft.util.text.TextComponentString(
                     "Você entrou na frequência: " + freq
                 ));
-                String groupName = "radio_" + freq;
-                // Certifica que o grupo de voz existe antes de adicionar o player!
-                if (!com.dev.sphone.api.voicemanager.voicechat.VoiceAddon.groupExists(groupName)) {
-                    com.dev.sphone.api.voicemanager.voicechat.VoiceAddon.createGroup(groupName, false, de.maxhenkel.voicechat.api.Group.Type.OPEN);
-                }
-                VoiceManager.voiceManager.addPlayertoCall(player, groupName);
             } else {
                 player.sendMessage(new net.minecraft.util.text.TextComponentString(
                     "Frequência inválida. Use de 1 a 1000."
                 ));
             }
+        }
         });
         return null;
     }

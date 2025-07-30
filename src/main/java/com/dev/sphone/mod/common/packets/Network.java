@@ -61,6 +61,8 @@ public class Network {
         // Adicione este registro para o rádio funcionar!
         packetFromServer(com.dev.sphone.mod.common.packets.server.HandlerTuneRadio.class,
                          com.dev.sphone.mod.common.packets.client.PacketTuneRadio.class);
+        packetFromServer(com.dev.sphone.mod.common.packets.server.radio.PacketRadioMuteToggle.Handler.class,
+                         com.dev.sphone.mod.common.packets.server.radio.PacketRadioMuteToggle.class);
 
         // Contacts (descomentado se for usar)
         //packetFromServer(PacketGetContacts.ServerHandler.class, PacketGetContacts.class);

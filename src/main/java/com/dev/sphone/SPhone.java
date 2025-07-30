@@ -36,7 +36,7 @@ import org.apache.logging.log4j.Logger;
         modid = SPhone.MOD_ID,
         name = SPhone.MOD_NAME,
         version = SPhone.VERSION,
-        dependencies = "after: voicechat; required-after: voicechat@[1.12.2-2.4.13,); required-after: acslib@[1.2.2,);"
+        dependencies = "after: voicechat; required-after: acslib@[1.2.2,);"
 )
 public class SPhone {
 
@@ -61,7 +61,9 @@ public class SPhone {
         Network.init();
 
         MinecraftForge.EVENT_BUS.register(new RegisterHandler());
-        MinecraftForge.EVENT_BUS.register(new VoiceNetwork());
+        if (isModLoaded("voicechat")) {
+            MinecraftForge.EVENT_BUS.register(new VoiceNetwork());
+        }
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new SPhoneEvents());
         logger = e.getModLog();
@@ -90,6 +92,9 @@ public class SPhone {
             ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/twitter.css"));
             ACsGuiApi.registerStyleSheetToPreload(new ResourceLocation(SPhone.MOD_ID, "css/radio.css"));
             MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+
+            com.dev.sphone.mod.client.radio.RadioKeyHandler.init();
+            MinecraftForge.EVENT_BUS.register(new com.dev.sphone.mod.client.radio.RadioHudOverlay());
 
             if (isUsingMod("com.mrcrayfish.obfuscate.Obfuscate"))
                 MinecraftForge.EVENT_BUS.register(new ClientEventAnim());
@@ -132,5 +137,12 @@ public class SPhone {
         } catch (ClassNotFoundException e) {
             return false;
         }
+    }
+    
+    /**
+     * Checks if a Forge mod with the given modid is loaded.
+     */
+    public static boolean isModLoaded(String modid) {
+        return net.minecraftforge.fml.common.Loader.isModLoaded(modid);
     }
 }

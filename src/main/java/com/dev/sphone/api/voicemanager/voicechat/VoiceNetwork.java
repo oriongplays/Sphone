@@ -16,7 +16,11 @@ public void addPlayertoCall(EntityPlayerMP player, String callNumber) {
         VoiceAddon.addToGroup(callNumber, player);
     } else {
         System.out.println("addPlayertoCall : " + callNumber + " doesn't exists");
-        VoiceAddon.createGroup(callNumber, false, Group.Type.OPEN);
+        Group.Type type = Group.Type.OPEN;
+        if (callNumber.toLowerCase().startsWith("radio_")) {
+            type = Group.Type.NORMAL;
+        }
+        VoiceAddon.createGroup(callNumber, false, type);
         VoiceAddon.addToGroup(callNumber, player);
     }
 }

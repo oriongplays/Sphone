@@ -32,6 +32,9 @@ public class PacketToggleGroupMute implements IMessage {
         @Override
         @SideOnly(Side.SERVER)
         public IMessage onMessage(PacketToggleGroupMute message, MessageContext ctx) {
+                if (!com.dev.sphone.SPhone.isModLoaded("voicechat")) {
+                return null;
+            }
             EntityPlayerMP player = ctx.getServerHandler().player;
             VoiceAddon.setGroupMute(player, message.mute);
             return null;

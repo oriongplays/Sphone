@@ -43,18 +43,19 @@ public class VoiceAddon implements VoicechatPlugin {
 
     public void registerEvents(EventRegistration registration) {
         registration.registerEvent(VoicechatServerStartedEvent.class, this::onServerStarted, 100);
-        // Listen for outgoing sound packets so we can filter group audio
-        // without affecting normal proximity or whisper voice chat.
+        // Existing handler for call group muting
         registration.registerEvent(SoundPacketEvent.class, VoiceAddon::onSoundPacket, 100);
+        // Handler for radio specific muting
+        com.dev.sphone.mod.common.radio.VoiceIntegrationHandler.registerEvents(registration);
     }
 
     public void onServerStarted(VoicechatServerStartedEvent e) {
         api = e.getVoicechat();
         
         if (api == null) {
-    System.out.println("VoiceAddon.api is NULL - Cannot create group!");
-    return;
-}
+            System.out.println("VoiceAddon.api is NULL - Cannot create group!");
+            return;
+        }
     }
     
 
@@ -105,6 +106,9 @@ public class VoiceAddon implements VoicechatPlugin {
     }
 
     public static void removeFromActualGroup(EntityPlayer player) {
+                if (api == null) {
+            return;
+        }
         VoicechatConnection connection = api.getConnectionOf(player.getUniqueID());
         if (connection != null) {
             String groupName = getGroup(player);
@@ -163,6 +167,9 @@ public class VoiceAddon implements VoicechatPlugin {
     }
 
     public static String getGroup(EntityPlayer player) {
+                if (api == null) {
+            return null;
+        }
         VoicechatConnection connection = api.getConnectionOf(player.getUniqueID());
         if (connection == null) {
             return null;
@@ -183,12 +190,14 @@ public class VoiceAddon implements VoicechatPlugin {
     }
 
     public static boolean isInGroup(EntityPlayer player) {
+                if (api == null) {
+            return false;
+        }
         VoicechatConnection connection = api.getConnectionOf(player.getUniqueID());
         if (connection == null) {
             return false;
-        } else {
-            return connection.getGroup() != null;
         }
+        return connection.getGroup() != null;
     }
     
         /**
