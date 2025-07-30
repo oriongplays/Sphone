@@ -25,7 +25,11 @@ public class HandlerTuneRadio implements IMessageHandler<PacketTuneRadio, IMessa
                     VoiceManager.voiceManager.removePlayerFromCall(player);
                 }
 
-            if (freq >= 1 && freq <= 1000) {
+            if (freq == 0) {
+                player.sendMessage(new net.minecraft.util.text.TextComponentString(
+                        "Você saiu da frequência"
+                ));
+            } else if (freq >= 1 && freq <= 1000) {
                 RADIO_GROUPS.computeIfAbsent(freq, k -> new HashSet<>()).add(player.getUniqueID());
                 player.sendMessage(new net.minecraft.util.text.TextComponentString(
                     "Você entrou na frequência: " + freq

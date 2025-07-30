@@ -48,6 +48,9 @@ sphone.settings.errorbg=Unable to load the background
 sphone.plusplusgame.points=Points :
 sphone.radio.muted=Radio muet
 sphone.radio.active=Radio actif
+sphone.subtitle.radio_on=§aRadio allumé
+sphone.subtitle.radio_off=§cRadio éteint
+sphone.subtitle.radio_ping=§eBip radio
 sphone.voice.muted=Micro du groupe coupé
 sphone.voice.unmuted=Micro du groupe réactivé
 

@@ -6,6 +6,7 @@ import de.maxhenkel.voicechat.Voicechat;
 import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.EventRegistration;
 import de.maxhenkel.voicechat.api.events.VoicechatServerStartedEvent;
+import de.maxhenkel.voicechat.api.events.ClientSoundEvent;
 import de.maxhenkel.voicechat.net.NetManager;
 import de.maxhenkel.voicechat.net.RemoveGroupPacket;
 import de.maxhenkel.voicechat.api.events.SoundPacketEvent;
@@ -47,6 +48,8 @@ public class VoiceAddon implements VoicechatPlugin {
         registration.registerEvent(SoundPacketEvent.class, VoiceAddon::onSoundPacket, 100);
         // Handler for radio specific muting
         com.dev.sphone.mod.common.radio.VoiceIntegrationHandler.registerEvents(registration);
+        registration.registerEvent(de.maxhenkel.voicechat.api.events.ClientReceiveSoundEvent.StaticSound.class,
+                new com.dev.sphone.mod.client.radio.RadioAudioFilter()::onClientSound, 100);
     }
 
     public void onServerStarted(VoicechatServerStartedEvent e) {

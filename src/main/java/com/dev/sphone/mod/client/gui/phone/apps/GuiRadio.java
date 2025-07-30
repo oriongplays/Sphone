@@ -100,9 +100,9 @@ public class GuiRadio extends GuiFrame {
                 );
                 return;
             }
-            if (freq < 1 || freq > 999) {
+            if (freq < 0 || freq > 999) {
                 Minecraft.getMinecraft().player.sendMessage(
-                        new TextComponentString("A frequência deve ser entre 1 e 999.")
+                        new TextComponentString("A frequência deve ser entre 0 e 999.")
                 );
                 return;
             }

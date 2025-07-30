@@ -57,8 +57,8 @@ public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player
             //player.sendStatusMessage(
             //    new TextComponentString(TextFormatting.GREEN + "Conectando à frequência: " + freq), true);
         } else {
-            player.sendStatusMessage(
-                new TextComponentString(TextFormatting.RED + "Configure uma frequência antes de usar o rádio!"), true);
+           // player.sendStatusMessage(
+                // new TextComponentString(TextFormatting.RED + "Configure uma frequência antes de usar o rádio!"), true);
         }
     }
     return new ActionResult<>(EnumActionResult.SUCCESS, stack);
@@ -94,5 +94,26 @@ public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player
     public static void setInUse(ItemStack stack, boolean inUse) {
         if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
         stack.getTagCompound().setBoolean(IN_USE_KEY_TAG, inUse);
+    }
+    
+    /**
+     * Updates the lore of the radio to indicate if it is muted or active.
+     */
+    public static void setMutedLore(ItemStack stack, boolean muted) {
+        if (stack == null || stack.isEmpty()) return;
+        if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+        NBTTagCompound tag = stack.getTagCompound();
+
+        NBTTagCompound display = tag.getCompoundTag("display");
+        if (!tag.hasKey("display")) {
+            display = new NBTTagCompound();
+        }
+
+        net.minecraft.nbt.NBTTagList lore = new net.minecraft.nbt.NBTTagList();
+        lore.appendTag(new net.minecraft.nbt.NBTTagString(muted ? "Mutado" : "Na escuta"));
+
+        display.setTag("Lore", lore);
+        tag.setTag("display", display);
+        stack.setTagCompound(tag);
     }
 }
