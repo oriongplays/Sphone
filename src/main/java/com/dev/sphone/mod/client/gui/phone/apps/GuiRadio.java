@@ -41,13 +41,7 @@ public class GuiRadio extends GuiFrame {
         // Painel dos botões numéricos
         GuiPanel buttons = new GuiPanel();
         buttons.setCssClass("radio-buttons");
-        buttons.setLayout(new GridLayout(
-                35 + 6, // largura+margin
-                35 + 6, // altura+margin
-                1,
-                GridLayout.GridDirection.HORIZONTAL,
-                3
-        ));
+        buttons.setLayout(new GridLayout(35, 35, 1, GridLayout.GridDirection.HORIZONTAL, 3));
         frame.add(buttons);
 
         // Adiciona os botões 1-9, *, 0, DEL
