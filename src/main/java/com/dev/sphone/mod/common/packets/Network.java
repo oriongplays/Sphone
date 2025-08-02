@@ -28,6 +28,7 @@ public class Network {
         packetFromClient(PacketOpenPhone.Handler.class, PacketOpenPhone.class);
         packetFromClient(PacketOpenNotes.Handler.class, PacketOpenNotes.class);
         packetFromClient(PacketSendWeather.Handler.class, PacketSendWeather.class);
+        packetFromClient(PacketSendBank.Handler.class, PacketSendBank.class);
         packetFromClient(PacketOpenListConv.Handler.class, PacketOpenListConv.class);
         packetFromClient(PacketOpenContacts.Handler.class, PacketOpenContacts.class);
         packetFromClient(PacketOpenConvContact.Handler.class, PacketOpenConvContact.class);

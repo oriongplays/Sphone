@@ -60,6 +60,19 @@ public class AppManager {
                 true
         ));
 
+                apps.add(new App(
+                null,
+                new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/bank.png"),
+                "bank",
+                "Bank",
+                "System app",
+                "1.0",
+                false,
+                false,
+                () -> SPhone.network.sendToServer(new PacketRequestData("bank")),
+                true
+        ));
+        
         guiSupplier = () -> new GuiMakeCall(root).getGuiScreen();
 
         apps.add(new App(guiSupplier,
