@@ -55,15 +55,6 @@ public class GuiBank extends GuiBase {
         );
         getRoot().add(saldo);
 
-        GuiLabel transferencia = new GuiLabel("Transferencia");
-        transferencia.setCssId("forecastIcon");
-        transferencia.addClickListener((x, y, button) -> {
-            Minecraft mc = Minecraft.getMinecraft();
-            GuiScreen current = this.getGuiScreen();
-            mc.displayGuiScreen(null);
-            mc.displayGuiScreen(new GuiBankTransfer(current).getGuiScreen());
-        });
-        getRoot().add(transferencia);
     }
 
     @Override
