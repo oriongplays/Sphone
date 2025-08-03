@@ -11,6 +11,7 @@
     z-index: 2;
 }
 
+
 #button_add {
     right: 4%;
     top: 8%;
@@ -41,6 +42,7 @@
 #button_del:hover {
     background-color: #C33A1B;
 }
+
 
 .titre {
     padding-top: 5px;
