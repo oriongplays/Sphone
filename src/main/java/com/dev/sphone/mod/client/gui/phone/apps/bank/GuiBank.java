@@ -55,6 +55,13 @@ public class GuiBank extends GuiBase {
         );
         getRoot().add(saldo);
 
+        GuiLabel transferir = new GuiLabel("Transferir");
+        transferir.setCssId("forecastTimeLabel");
+        transferir.addClickListener((mouseX, mouseY, mouseButton) ->
+                Minecraft.getMinecraft().displayGuiScreen(new GuiTransfer(this.getGuiScreen()).getGuiScreen())
+        );
+        getRoot().add(transferir);
+        
     }
 
     @Override
