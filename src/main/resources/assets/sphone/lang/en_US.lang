@@ -53,6 +53,10 @@ sphone.notes.newtitle=➜ Title
 sphone.notes.newcontent=➜ Note
 sphone.notes.remove=Delete
 
+sphone.bank.add=Para confirmar clique ➜
+sphone.bank.newReceiver=➜ Destinatário
+sphone.bank.newAmount=➜ Quanto deseja enviar?
+
 sphone.appstore.recommended=Our recommended apps
 sphone.appstore.usesettings=Use the settings to uninstall apps
 
