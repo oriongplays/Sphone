@@ -1,5 +1,5 @@
 #root{
-    background-color: #0D55AF;
+    background-image: url("sphone:textures/ui/background/enderbank.png");
 }
 
 #city{
@@ -45,23 +45,35 @@
 #forecastLabel{
     font-family: "dnx:montserratlow";
     font-size: 3%;
-    top: 55%;
-    width: 80%;
-    height: 8%;
-    text-align: center;
-    horizontal-position: center;
-    text-shadow: disable;
-}
-
-#forecastTimeLabel{
-    font-family: "dnx:montserratlow";
-    font-size: 3%;
     top: 65%;
     width: 80%;
     height: 8%;
     text-align: center;
     horizontal-position: center;
     text-shadow: disable;
+    border-radius: 15px;
+    background-color: #329b5e;
+}
+
+#forecastLabel:hover {
+    background-color: #41bb74;
+}
+
+#forecastTimeLabel{
+    font-family: "dnx:montserratlow";
+    font-size: 3%;
+    top: 75%;
+    width: 80%;
+    height: 8%;
+    text-align: center;
+    horizontal-position: center;
+    text-shadow: disable;
+    border-radius: 15px;
+    background-color: #39af6a;
+}
+
+#forecastTimeLabel:hover {
+    background-color: #41bb74;
 }
 
 #forecastIcon{

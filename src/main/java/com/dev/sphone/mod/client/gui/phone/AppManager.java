@@ -8,11 +8,11 @@ import com.dev.sphone.mod.client.gui.phone.apps.appstore.GuiAppStoreHome;
 import com.dev.sphone.mod.client.gui.phone.apps.calculator.GuiCalculator;
 import com.dev.sphone.mod.client.gui.phone.apps.call.GuiMakeCall;
 import com.dev.sphone.mod.client.gui.phone.apps.camera.GuiGallery;
-import com.dev.sphone.mod.client.gui.phone.apps.plusplusgame.GuiPlusPlusGame;
 import com.dev.sphone.mod.client.gui.phone.apps.settings.GuiSettingList;
 import com.dev.sphone.mod.common.packets.server.PacketRequestData;
 import com.dev.sphone.mod.common.packets.server.PacketSetAnim;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -38,7 +38,7 @@ public class AppManager {
                 null,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/message.png"),
                 "messages",
-                "Messages",
+                I18n.format("sphone.message.title"),
                 "System app",
                 "1.0",
                 false,
@@ -51,7 +51,7 @@ public class AppManager {
                 null,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/weather_icon.png"),
                 "weather",
-                "Weather",
+                I18n.format("sphone.meteo.title"),
                 "System app",
                 "1.0",
                 false,
@@ -64,7 +64,7 @@ public class AppManager {
                 null,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/bank.png"),
                 "bank",
-                "Bank",
+                I18n.format("sphone.bank.title"),
                 "System app",
                 "1.0",
                 false,
@@ -72,13 +72,13 @@ public class AppManager {
                 () -> SPhone.network.sendToServer(new PacketRequestData("bank")),
                 true
         ));
-        
+
         guiSupplier = () -> new GuiMakeCall(root).getGuiScreen();
 
         apps.add(new App(guiSupplier,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/call.png"),
                 "Phone",
-                "Téléphone",
+                I18n.format("sphone.phone.title"),
                 "System app",
                 "1.0",
                 false,
@@ -92,7 +92,7 @@ public class AppManager {
                 null,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/notes.png"),
                 "notes",
-                "Notes",
+                I18n.format("sphone.notes.title"),
                 "System app",
                 "1.0",
                 false,
@@ -105,7 +105,7 @@ public class AppManager {
                 null,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/contacts.png"),
                 "contacts",
-                "Contacts",
+                I18n.format("sphone.contacts.title"),
                 "System app",
                 "1.0",
                 false,
@@ -119,7 +119,7 @@ public class AppManager {
         apps.add(new App(guiSupplier,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/calculator.png"),
                 "calculator",
-                "Calculatrice",
+                I18n.format("sphone.calculator.title"),
                 "Simple calculator",
                 "1.0",
                 false,
@@ -133,7 +133,7 @@ public class AppManager {
         apps.add(new App(guiSupplier,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/settings.png"),
                 "settings",
-                "Paramètres",
+                I18n.format("sphone.settings.title"),
                 "System app",
                 "1.0",
                 false,
@@ -146,7 +146,7 @@ public class AppManager {
         apps.add(new App(null,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/photo.png"),
                 "camera",
-                "Camera",
+                I18n.format("sphone.camera.title"),
                 "System app",
                 "1.0",
                 false,
@@ -165,7 +165,7 @@ public class AppManager {
         apps.add(new App(guiSupplier,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/gallery.png"),
                 "gallery",
-                "Galerie",
+                I18n.format("sphone.gallery.title"),
                 "System app",
                 "1.0",
                 false,
@@ -179,7 +179,7 @@ public class AppManager {
         apps.add(new App(guiSupplier,
                 new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/appstore.png"),
                 "appstore",
-                "App Store",
+                I18n.format("sphone.appstore.title"),
                 "System app",
                 "1.0",
                 false,
@@ -188,27 +188,13 @@ public class AppManager {
                 true
         ));
 
-        guiSupplier = () -> new GuiPlusPlusGame(root).getGuiScreen();
-
-        apps.add(new App(guiSupplier,
-                new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/plusplusgame.png"),
-                "plusplusgame",
-                "++ Game",
-                "The famous ++ game",
-                "1.0",
-                false,
-                false,
-                null,
-                false
-        ));
-
         if (GuiHome.DEVMODE_LOCAL) {
             guiSupplier = () -> new DevGui(root).getGuiScreen();
 
             apps.add(new App(guiSupplier,
                     new ResourceLocation(SPhone.MOD_ID, "textures/ui/icons/devapp.png"),
                     "dev",
-                    "Developement",
+                    I18n.format("sphone.dev.title"),
                     "dev",
                     "0.0",
                     false,
