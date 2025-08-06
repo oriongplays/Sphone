@@ -16,6 +16,7 @@ import com.dev.sphone.mod.common.register.SoundRegister;
 import com.dev.sphone.mod.server.bdd.MethodesBDDImpl;
 import com.dev.sphone.mod.server.bdd.sql.MySQL;
 import com.dev.sphone.mod.server.commands.CommandGivePhone;
+import com.dev.sphone.mod.server.commands.CommandAdminSim;
 import com.dev.sphone.mod.utils.ObfuscateUtils;
 import com.dev.sphone.mod.utils.exceptions.DatabaseException;
 import fr.aym.acsguis.api.ACsGuiApi;
@@ -120,6 +121,7 @@ public class SPhone {
     @Mod.EventHandler
     public void onServerStart(FMLServerStartingEvent e) throws com.dev.sphone.mod.utils.exceptions.DatabaseException {
         e.registerServerCommand(new CommandGivePhone());
+        e.registerServerCommand(new CommandAdminSim());
         MethodesBDDImpl.checkFile();
 
         MethodesBDDImpl.init();
